@@ -1,0 +1,6 @@
+@CrossfitChampionship.API_HostAddress = http://localhost:5164
+
+GET {{CrossfitChampionship.API_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
