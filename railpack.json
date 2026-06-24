@@ -1,7 +1,20 @@
 {
   "$schema": "https://schema.railpack.com",
   "provider": "dotnet",
+  "steps": {
+    "install": {
+      "commands": [
+        "dotnet restore CrossfitChampionship.sln"
+      ]
+    },
+    "build": {
+      "inputs": [{ "step": "install" }],
+      "commands": [
+        "dotnet publish CrossfitChampionship.API/CrossfitChampionship.API.csproj --no-restore -c Release -o out"
+      ]
+    }
+  },
   "deploy": {
-    "startCommand": "./out/CrossfitChampionship.API"
+    "startCommand": "dotnet ./out/CrossfitChampionship.API.dll"
   }
 }
