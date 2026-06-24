@@ -8,7 +8,9 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-builder.Services.AddInfrastructure(string.Empty);
+var connectionString = builder.Configuration.GetConnectionString("SupabaseConnection")
+    ?? throw new InvalidOperationException("Connection string 'SupabaseConnection' not found.");
+builder.Services.AddInfrastructure(connectionString);
 
 builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<ICategoryService, CategoryService>();
